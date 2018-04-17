@@ -2,9 +2,9 @@
 #include <stdlib.h>
 
 int main(int argc, char** argv){
-	const int MAX = 1000;
-	FILE* fp;
-	char str[MAX];
+	const int MAX = 1000; //to initialize char array. Max to 1000 char per line
+	FILE* fp; //instance of file
+	char str[MAX];//char array
 
 	if(argc != 2){
 		//argv[0] = programName
@@ -25,11 +25,15 @@ int main(int argc, char** argv){
 		exit(EXIT_FAILURE);
 	}
 
+	//keep reading file and print untill null (eof)
 	while(fgets(str, MAX, fp) != NULL){
 		printf("%s", str);
 	}
 
+	//close file
 	fclose(fp);
+
+
 	return 0;
 
 }
