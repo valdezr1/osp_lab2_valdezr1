@@ -54,9 +54,20 @@ int main(int argc, char* argv[]){
 		}
 		
 		i = 0; //reset counter
-		printf("-------------------");
-		for(i = 0; i < FIVE; i++){
-			printf(strArr[i]);
+		
+		while(1){
+			if(&strArr[i] == first){
+				printf(strArr[i]);
+				if(i == FIVE-1){
+					i = -1;
+				}
+				first = &strArr[i + 1];
+			        if(first == last){
+					printf(*first);
+					break;
+				}	
+			}
+			i++;
 		}
 
 
