@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char* argv[])
+int main(int argc, char* argv[]){
 
 	//Five
 	const size_t FIVE = 5;
@@ -13,7 +13,7 @@ int main(int argc, char* argv[])
 	char** first;
 	char** last = NULL;
         //Account for malloc params (nbytes)
-	const size_t nbytes = 256; 
+	size_t nbytes = 256; 
 	int read = 0;
 	int i = 0;
 		
@@ -38,20 +38,25 @@ int main(int argc, char* argv[])
 			if(read == -1){
 				break;
 			}
-			if(i == FIVE - 1){
-				i = 0;
-				
-			}
 			if(first == last){
 				if(i + 1 == FIVE){
-					first = strArr[0];
+					first = &strArr[0];
 				}
 				else{
-					first = strArr[i+1];
+					first = &strArr[i+1];
 				}
 			}
-			last = strArr[i];
+			last = &strArr[i];
 			i++;
+			if(i == FIVE){
+				i = 0;
+			}
+		}
+		
+		i = 0; //reset counter
+		printf("-------------------");
+		for(i = 0; i < FIVE; i++){
+			printf(strArr[i]);
 		}
 
 
@@ -62,18 +67,6 @@ int main(int argc, char* argv[])
 
 
 
-
-		
-		buff = (char*)malloc(nbytes*sizeof(array));
-		ptr = ptrArr;
-
-		//Print last five lines user enters
-		for(i = 0; i < MAX; i++){
-			read = getline(&buff, &nbytes, stdin);
-			ptrArr[i] = buff;
-			buff = NULL;
-		}
-		
 	}
 	//Two arguments indicating the following: ./new_tail [file.txt]
 	else if(argc == 2){
