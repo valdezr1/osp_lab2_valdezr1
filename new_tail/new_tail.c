@@ -16,6 +16,7 @@ int main(int argc, char* argv[]){
 	size_t nbytes = 256; 
 	int read = 0;
 	int i = 0;
+	int count = 0;
 		
 
 	//One argument indicating the following: ./new_tail
@@ -38,6 +39,7 @@ int main(int argc, char* argv[]){
 			if(read == -1){
 				break;
 			}
+			count = count + 1;
 			if(first == last){
 				if(i + 1 == FIVE){
 					first = &strArr[0];
@@ -55,6 +57,7 @@ int main(int argc, char* argv[]){
 		
 		i = 0; //reset counter
 		
+		if(count > 5){
 		while(1){
 			if(&strArr[i] == first){
 				printf(strArr[i]);
@@ -69,6 +72,13 @@ int main(int argc, char* argv[]){
 			}
 			i++;
 		}
+		}
+		else{
+			for(i = 0; i < count; i++){
+				printf(strArr[i]);
+			}
+		}
+
 
 
 
