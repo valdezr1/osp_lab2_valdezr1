@@ -58,27 +58,38 @@ int main(int argc, char* argv[]){
 		i = 0; //reset counter
 		
 		if(count > 5){
-		while(1){
-			if(&strArr[i] == first){
-				printf(strArr[i]);
-				if(i == FIVE-1){
-					i = -1;
+			while(1){
+				if(&strArr[i] == first){
+					printf(strArr[i]);
+					if(i == FIVE-1){
+						i = -1;
+					}
+					first = &strArr[i + 1];
+			        	if(first == last){
+						printf(*first);
+						break;
+					}	
 				}
-				first = &strArr[i + 1];
-			        if(first == last){
-					printf(*first);
-					break;
-				}	
+				i++;
 			}
-			i++;
-		}
+
+			for(i=0; i < FIVE; i++){
+				free(strArr[i]);
+			}
+			free(strArr);
+
 		}
 		else{
 			for(i = 0; i < count; i++){
 				printf(strArr[i]);
 			}
-		}
 
+			//deallocate memory
+			for(i = 0; i < count; i++){
+				free(strArr[i]);
+			}
+			free(strArr);
+		}
 
 
 
