@@ -24,6 +24,17 @@ int main(int argc, char* argv[]){
 	int len = 0;
 	char *ptr;
 	int n;
+
+	//GIST:
+	//1st while loop will use first to view which is first in the array of size N (default 5)
+	//	char ** first marks where the first element of the array begins to print in order
+	//	char ** last marks where the last element of the array is
+	//	if the count of the inputs is more than N (default 5), then the first, would be pushed
+	//	to the next element of the array (in a circular format), and the last would then be the
+	//	new overwritten position of the array.
+	//
+	//	This process generally occurs in all of the cases, simply dependent on stdin (user input)
+	//	or file input and whether N is specified or not (defaults to 5).
 		
 
 	//One argument indicating the following: ./new_tail
@@ -42,6 +53,7 @@ int main(int argc, char* argv[]){
 			
 		//while getline is legit
 		while(1){
+			//user input taken in through getline
 			read = getline(&strArr[i], &nbytes, stdin);
 			if(read == -1){
 				break;

@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 
+//returns number of words in str
 int wordCount(char* str){
 	char* tkn;
 	int count = 0;
@@ -17,12 +18,10 @@ int wordCount(char* str){
 	return count;
 }
 
+//returns number of chars in str
 int charCount(char* str){
 	int count = 0; 
 	int len = strlen(str);
-	//for(int i = 0; i < len; i++){
-	//	count++;
-	//}
 	return len;
 }
 
@@ -41,12 +40,20 @@ int main(int argc, char** argv){
 	if(argc == 2){
 		//[-l | -c] | [file.txt]
 		//File
-		if( 0 != strcmp(argv[1],"-c") && 0 != strcmp(argv[1], "-l")){
+		//
+		//Gist:
+		//Open file if file is invoked
+		//Allocate string memory
+		//getline until file is ended
+		//count the words, chars/lines until end of str then add to previous values
+		//
+		//
+		//
+		if( 0 != strcmp(argv[1],"-c") && 0 != strcmp(argv[1], "-l")){ //just the file
 			file = fopen(argv[1], "r");
 			if(file == NULL){
 				printf("Invalid File\n");
 			}
-			//getline, call wordCount, call charCount
 			str = malloc(buffer);
 			while(read != -1){
 				read = getline(&str, &buffer, file); 
@@ -96,13 +103,13 @@ int main(int argc, char** argv){
 	}
 	//Both [-l|-c] [file.txt]
 	else if(argc == 3){
-		if(strcmp(argv[1], "-l") != 0 && strcmp(argv[1], "-c") != 0){
+		if(strcmp(argv[1], "-l") != 0 && strcmp(argv[1], "-c") != 0){ //file first
 			file = fopen(argv[1], "r");
 			if(file == NULL){
 				printf("Invalid File\n");
 				return 0;
 			}
-			if(strcmp(argv[2], "-c") == 0){
+			if(strcmp(argv[2], "-c") == 0){ //file and -c
 				str = malloc(buffer);
 				while(read != -1){
 					read = getline(&str, &buffer, file);
@@ -117,7 +124,7 @@ int main(int argc, char** argv){
 				printf("Number of words: %d\n", WCount);
 				printf("Number of chars: %d\n", CCount);
 			}
-			else if(strcmp(argv[2], "-l") == 0){
+			else if(strcmp(argv[2], "-l") == 0){ //file and -l
 				str = malloc(buffer);
 				while(read != -1){
 					read = getline(&str, &buffer, file);
@@ -138,11 +145,12 @@ int main(int argc, char** argv){
 			}
 		}
 	}
+	//One argument only
 	else if(argc == 1){
 		
 		str = malloc(buffer);
 		while(read != -1){
-			read = getline(&str, &buffer, stdin);
+			read = getline(&str, &buffer, stdin); //user input
 			if(read == -1){
 				break;
 			}
@@ -153,6 +161,7 @@ int main(int argc, char** argv){
 		printf("Number of words: %d\n", WCount);
 
 	}
+	//invalid number of arguments
 	else{
 		printf("Invalid Arguments\n");
 	}
