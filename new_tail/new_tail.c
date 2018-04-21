@@ -147,7 +147,7 @@ int main(int argc, char* argv[]){
 		
 		i = 0; //reset counter
 		
-		if(count > 5){
+		if(count >= 5){
 			while(1){
 				if(&strArr[i] == first){
 					printf(strArr[i]);
@@ -237,7 +237,7 @@ int main(int argc, char* argv[]){
 		
 		i = 0; //reset counter
 		
-		if(count > n){
+		if(count >= n){
 			while(1){
 				if(&strArr[i] == first){
 					printf(strArr[i]);
@@ -301,12 +301,13 @@ int main(int argc, char* argv[]){
 			}
 
 			if(strcmp(argv[1], "-n") == 0){ //No difference
-			//valid -n argument; needs to be followed by N
-			len = (int)strlen(argv[2]);
-			for(ptr=argv[2]; ptr == '\0'; ptr++){
-				if(isdigit(*ptr) == 0){
-					printf("Invalid Arguments\n");
-					exit(EXIT_FAILURE);
+				//valid -n argument; needs to be followed by N
+				len = (int)strlen(argv[2]);
+				for(ptr=argv[2]; ptr == '\0'; ptr++){
+					if(isdigit(*ptr) == 0){
+						printf("Invalid Arguments\n");
+						exit(EXIT_FAILURE);
+					}
 				}
 			}
 		}
@@ -326,7 +327,7 @@ int main(int argc, char* argv[]){
 			
 		//while getline is legit
 		while(1){
-			read = getline(&strArr[i], &nbytes, stdin);
+			read = getline(&strArr[i], &nbytes, file);
 			if(read == -1){
 				break;
 			}
@@ -348,7 +349,7 @@ int main(int argc, char* argv[]){
 		
 		i = 0; //reset counter
 		
-		if(count > n){
+		if(count >= n){
 			while(1){
 				if(&strArr[i] == first){
 					printf(strArr[i]);
